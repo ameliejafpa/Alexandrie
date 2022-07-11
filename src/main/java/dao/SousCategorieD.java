@@ -81,7 +81,7 @@ public class SousCategorieD implements IDao<SousCategorieM> {
 		SousCategorieM sousCategorie = null;		
 		try {
 			PreparedStatement sql = connect.prepareStatement("SELECT * FROM sousCategorie INNER JOIN categorie "
-					+ "ON sousCategorie.idCategorie=categorie.id WHERE id= "+id+"");			
+					+ "ON sousCategorie.idCategorie=categorie.id WHERE sousCategorie.id= "+id+"");			
 			ResultSet res = sql.executeQuery();			
 			if(res.next()) {
 				sousCategorie = new SousCategorieM(res.getInt("sousCategorie.id"),res.getString("sousCategorie.titre"), 
