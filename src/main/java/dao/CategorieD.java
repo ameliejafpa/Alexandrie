@@ -72,12 +72,12 @@ public class CategorieD implements IDao<CategorieM>{
 
 	@Override
 	public CategorieM findById(int id) {
-		CategorieM categorie = new CategorieM();		
+		CategorieM categorie = null;		
 		try {
 			PreparedStatement sql = connect.prepareStatement("SELECT * FROM categorie WHERE id= "+id+"");			
-			ResultSet rs = sql.executeQuery();			
-			if(rs.next()) {
-				categorie = new CategorieM(rs.getInt("id"),rs.getString("titre"));			
+			ResultSet res = sql.executeQuery();			
+			if(res.next()) {
+				categorie = new CategorieM(res.getInt("id"),res.getString("titre"));			
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
