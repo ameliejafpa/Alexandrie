@@ -16,7 +16,7 @@ public class AdresseLivraisonD implements IDao<AdresseLivraisonM>{
 	@Override
 	public boolean create(AdresseLivraisonM adresseLivraison) {
 		// TODO Auto-generated method stub
-try {
+		try {
 			
 			PreparedStatement sql = connect.prepareStatement("INSERT INTO adresseLivraison(idUtilisateur, adresse, codePostal, ville, pays) VALUES (? , ?,  ?, ?, ?");
 			
@@ -93,7 +93,6 @@ try {
 			PreparedStatement sql = connect.prepareStatement("DELETE FROM adresseLivraison WHERE id = ?");
 			sql.setInt(1, id);
 			sql.executeUpdate();
-			System.out.println("suppression association ok");
 			return true;
 			
 		} catch (SQLException e) {

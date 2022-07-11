@@ -89,7 +89,6 @@ public class UtitlisateurD implements IDao<UtilisateurM> {
 			PreparedStatement sql = connect.prepareStatement("DELETE FROM utilisateur WHERE id=?");
 			sql.setInt(1, id);
 			sql.executeUpdate();
-			System.out.println("Delete OK");
 			
 			return true;
 		} catch (SQLException e) {
