@@ -7,12 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import modele.ContactM;
-import modele.RechercheM;
 import modele.UtilisateurM;
 
 public class ContactD implements IDao<ContactM>{
 	
-	Connection connect = new ConnectMySql().getConnection();
+	Connection connect = ConnectMySql.getConnection();
 
 	@Override
 	public boolean create(ContactM contact) {

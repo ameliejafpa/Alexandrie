@@ -6,13 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import modele.AdresseLivraisonM;
 import modele.RechercheM;
 import modele.UtilisateurM;
 
 public class RechercheD implements IDao<RechercheM>{
 	
-	Connection connect = new ConnectMySql().getConnection();
+	Connection connect = ConnectMySql.getConnection();
 
 	@Override
 	public boolean create(RechercheM recherche) {

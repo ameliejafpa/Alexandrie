@@ -8,12 +8,11 @@ import java.util.ArrayList;
 
 import modele.AdresseLivraisonM;
 import modele.CommandeM;
-import modele.ContactM;
 import modele.UtilisateurM;
 
 public class CommandeD implements IDao<CommandeM>{
 	
-	Connection connect = new ConnectMySql().getConnection();
+	Connection connect = ConnectMySql.getConnection();
 
 	@Override
 	public boolean create(CommandeM commande) {
