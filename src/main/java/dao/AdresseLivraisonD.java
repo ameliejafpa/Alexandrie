@@ -11,7 +11,7 @@ import modele.UtilisateurM;
 
 public class AdresseLivraisonD implements IDao<AdresseLivraisonM>{
 	
-	Connection connect = new ConnectMySql().getConnection();
+	Connection connect = ConnectMySql.getConnection();
 
 	@Override
 	public boolean create(AdresseLivraisonM adresseLivraison) {

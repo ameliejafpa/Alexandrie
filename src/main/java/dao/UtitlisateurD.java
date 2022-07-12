@@ -10,7 +10,7 @@ import modele.UtilisateurM;
 
 public class UtitlisateurD implements IDao<UtilisateurM> {
 	
-	Connection connect = new ConnectMySql().getConnection();
+	Connection connect = ConnectMySql.getConnection();
 
 	@Override
 	public boolean create(UtilisateurM utilisateur) {
