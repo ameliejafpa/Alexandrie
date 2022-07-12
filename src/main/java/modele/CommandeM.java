@@ -27,6 +27,11 @@ public class CommandeM {
 		this.etat = etat;
 	}
 	
+	
+	public CommandeM(int id, int etat) {
+		this.id = id;
+		this.etat = etat;
+	}
 	public int getId() {
 		return id;
 	}

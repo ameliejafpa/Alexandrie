@@ -50,19 +50,15 @@ public class DetailsCommandeD implements IDao<DetailsCommandeM>{
 			
 			while (rs.next()) {
 				DetailsCommandeM detailsCommande = new DetailsCommandeM();
-				UtilisateurM utilisateur = new UtilisateurM(rs.getInt("id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("dateInscription"),rs.getString("email"),rs.getString("motDePasse"));
-				AdresseLivraisonM adresseLivraison = new AdresseLivraisonM(rs.getInt("id"),utilisateur,rs.getString("adresse"),rs.getInt("codePostal"),rs.getString("ville"),rs.getString("pays"));
-				CommandeM commande = new CommandeM(rs.getInt("id"), utilisateur, rs.getString("dateC"), rs.getFloat("total"), adresseLivraison,rs.getInt("etat"));
-				ProduitM produit = new ProduitM(rs.getInt("id"),rs.getString("titre"));
+				CommandeM commande = new CommandeM(rs.getInt("commande.id"), rs.getInt("commande.etat"));
+				ProduitM produit = new ProduitM(rs.getInt("produit.id"),rs.getString("produit.titre"));
 				
-
-				detailsCommande.setId(rs.getInt("id"));
+				detailsCommande.setId(rs.getInt("detailsCommande.id"));
 				detailsCommande.setIdCommande(commande);
 				detailsCommande.setIdProduit(produit);
-				detailsCommande.setQuantite(rs.getInt("quantite"));
-				detailsCommande.setPrix(rs.getInt("prix"));
-				
-				
+				detailsCommande.setQuantite(rs.getInt("detailsCommande.quantite"));
+				detailsCommande.setPrix(rs.getInt("detailsCommande.prix"));
+						
 				detailsCommandes.add(detailsCommande);
 			}
 		} catch (Exception e) {
@@ -115,20 +111,19 @@ public class DetailsCommandeD implements IDao<DetailsCommandeM>{
 		
 
 		try {
-			PreparedStatement sql = connect.prepareStatement("SELECT * FROM detailsCommande WHERE id= ?");
+			PreparedStatement sql = connect.prepareStatement("SELECT * FROM detailsCommande INNER JOIN commande ON detailsCommande.idCommande = commande.id INNER JOIN produit ON detailsCommande.idProduit = produit.id WHERE id= ?");
 			sql.setInt(1, id);
 			ResultSet rs = sql.executeQuery();
 			if (rs.next()) {
 				
-				UtilisateurM utilisateur = new UtilisateurM(rs.getInt("id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("dateInscription"),rs.getString("email"),rs.getString("motDePasse"));
-				AdresseLivraisonM adresseLivraison = new AdresseLivraisonM(rs.getInt("id"),utilisateur,rs.getString("adresse"),rs.getInt("codePostal"),rs.getString("ville"),rs.getString("pays"));
-				CommandeM commande = new CommandeM(rs.getInt("id"), utilisateur, rs.getString("dateC"), rs.getFloat("total"), adresseLivraison,rs.getInt("etat"));
-				ProduitM produit = new ProduitM(rs.getInt("id"),rs.getString("titre"));
-
+				CommandeM commande = new CommandeM(rs.getInt("commande.id"), rs.getInt("commande.etat"));
+				ProduitM produit = new ProduitM(rs.getInt("produit.id"),rs.getString("produit.titre"));
+				
+				detailsCommande.setId(rs.getInt("detailsCommande.id"));
 				detailsCommande.setIdCommande(commande);
 				detailsCommande.setIdProduit(produit);
-				detailsCommande.setQuantite(rs.getInt("quantite"));
-				detailsCommande.setPrix(rs.getInt("prix"));
+				detailsCommande.setQuantite(rs.getInt("detailsCommande.quantite"));
+				detailsCommande.setPrix(rs.getInt("detailsCommande.prix"));
 				
 			}
 			
