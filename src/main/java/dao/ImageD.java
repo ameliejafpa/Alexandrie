@@ -50,8 +50,8 @@ public class ImageD implements IDao<ImageM>{
 	public boolean update(ImageM image, int id) {
 		try {
 			PreparedStatement sql = connect.prepareStatement("UPDATE image SET idProduit=?, url=? WHERE id=?");		
-			sql.setInt(2, image.getIdProduit().getId()); 
-			sql.setString(1, image.getUrl());	
+			sql.setInt(1, image.getIdProduit().getId()); 
+			sql.setString(2, image.getUrl());	
 			sql.setInt(3, id);		
 			sql.executeUpdate();		
 			return true;		

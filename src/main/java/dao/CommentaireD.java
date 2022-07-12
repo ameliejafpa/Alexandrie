@@ -40,7 +40,7 @@ public class CommentaireD implements IDao<CommentaireM>{
 			while (res.next()) {
 				CommentaireM commentaire = new CommentaireM(res.getInt("commentaire.id"), res.getString("commentaire.commentaire"), 
 						res.getInt("commentaire.note"), new ProduitM(res.getInt("produit.id"), res.getString("produit.titre")),
-						new UtilisateurM(res.getInt("id"),res.getString("nom"),res.getString("prenom"),res.getString("dateInscription"),
+						new UtilisateurM(res.getInt("utilisateur.id"),res.getString("nom"),res.getString("prenom"),res.getString("dateInscription"),
 								res.getString("email"),res.getString("motDePasse")));
 				listeCommentaire.add(commentaire);
 			}			
@@ -95,7 +95,7 @@ public class CommentaireD implements IDao<CommentaireM>{
 			if(res.next()) {
 				commentaire =  new CommentaireM(res.getInt("commentaire.id"), res.getString("commentaire.commentaire"),
 						res.getInt("commentaire.note"), new ProduitM(res.getInt("produit.id"), res.getString("produit.titre")),
-						new UtilisateurM(res.getInt("id"),res.getString("nom"),res.getString("prenom"),res.getString("dateInscription"),
+						new UtilisateurM(res.getInt("utilisateur.id"),res.getString("nom"),res.getString("prenom"),res.getString("dateInscription"),
 								res.getString("email"),res.getString("motDePasse")));	
 			}
 		}catch(Exception e) {

@@ -87,7 +87,7 @@ public class FavoriD implements IDao<FavoriM>{
 			ResultSet res = sql.executeQuery();			
 			if(res.next()) {
 				favori =  new FavoriM(res.getInt("favori.id"), new ProduitM(res.getInt("produit.id"), res.getString("produit.titre")),
-					new UtilisateurM(res.getInt("id"),res.getString("nom"),res.getString("prenom"),res.getString("dateInscription"),
+					new UtilisateurM(res.getInt("utilisateur.id"),res.getString("nom"),res.getString("prenom"),res.getString("dateInscription"),
 					res.getString("email"),res.getString("motDePasse")));	
 			}
 		}catch(Exception e) {

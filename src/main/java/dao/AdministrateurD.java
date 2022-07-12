@@ -14,7 +14,7 @@ public class AdministrateurD implements IDao<AdministrateurM>{
 	public boolean create(AdministrateurM administrateur) {
 		try {	
 			PreparedStatement sql = connect.prepareStatement("INSERT INTO administrateur (nom, email, motDePasse, "
-					+ "privilege) VALUES (?,?,?,?)");
+					+ "privilege) VALUES (?,?,SHA2(?,224),?)");
 			sql.setString(1, administrateur.getNom()); 
 			sql.setString(2, administrateur.getEmail()); 
 			sql.setString(3, administrateur.getMotDePasse()); 
@@ -48,7 +48,7 @@ public class AdministrateurD implements IDao<AdministrateurM>{
 	@Override
 	public boolean update(AdministrateurM administrateur, int id) {
 		try {
-			PreparedStatement sql = connect.prepareStatement("UPDATE administrateur SET nom=?, email=?, motDePasse=?, "
+			PreparedStatement sql = connect.prepareStatement("UPDATE administrateur SET nom=?, email=?, motDePasse=SHA2(?,224), "
 			+ "privilege=? WHERE id=?");
 			sql.setString(1, administrateur.getNom()); 
 			sql.setString(2, administrateur.getEmail()); 
