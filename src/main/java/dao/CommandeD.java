@@ -42,20 +42,20 @@ public class CommandeD implements IDao<CommandeM>{
 		// TODO Auto-generated method stub
 		ArrayList<CommandeM> commandes = new ArrayList<>();
 		try {
-			PreparedStatement sql = connect.prepareStatement("SELECT * FROM commande INNER JOIN utilisateur ON commande.idUtilisateur = utilisateur.id INNER JOIN adresseLivraison ON commande.idAdresse = utilisateur.id");
+			PreparedStatement sql = connect.prepareStatement("SELECT * FROM commande INNER JOIN utilisateur ON commande.idUtilisateur = utilisateur.id INNER JOIN adresseLivraison ON commande.idAdresse = adresseLivraison.id");
 			ResultSet rs = sql.executeQuery();
 			
 			while (rs.next()) {
 				CommandeM commande = new CommandeM();
-				UtilisateurM utilisateur = new UtilisateurM(rs.getInt("id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("dateInscription"),rs.getString("email"),rs.getString("motDePasse"));
-				AdresseLivraisonM adresseLivraison = new AdresseLivraisonM(rs.getInt("id"),utilisateur,rs.getString("adresse"),rs.getInt("codePostal"),rs.getString("ville"),rs.getString("pays"));
+				UtilisateurM utilisateur = new UtilisateurM(rs.getInt("utilisateur.id"),rs.getString("utilisateur.nom"),rs.getString("utilisateur.prenom"),rs.getString("utilisateur.dateInscription"),rs.getString("utilisateur.email"),rs.getString("utilisateur.motDePasse"));
+				AdresseLivraisonM adresseLivraison = new AdresseLivraisonM(rs.getInt("adresseLivraison.id"),utilisateur,rs.getString("adresseLivraison.adresse"),rs.getInt("adresseLivraison.codePostal"),rs.getString("adresseLivraison.ville"),rs.getString("adresseLivraison.pays"));
 				
-				commande.setId(rs.getInt("id"));
+				commande.setId(rs.getInt("commande.id"));
 				commande.setIdUtilisateur(utilisateur);
-				commande.setDateC(rs.getString("dateC"));
-				commande.setTotal(rs.getFloat("total"));
+				commande.setDateC(rs.getString("commande.dateC"));
+				commande.setTotal(rs.getFloat("commande.total"));
 				commande.setIdAdresse(adresseLivraison);
-				commande.setEtat(rs.getInt("etat"));
+				commande.setEtat(rs.getInt("commande.etat"));
 				
 				
 				commandes.add(commande);
@@ -71,11 +71,12 @@ public class CommandeD implements IDao<CommandeM>{
 	public boolean update(CommandeM commande, int id) {
 		// TODO Auto-generated method stub
 		try {
-			PreparedStatement sql = connect.prepareStatement("UPDATE commande SET idUtilisateur = ?, total = ?, idAdresse = ?, etat = ? WHERE id = ?");
+			PreparedStatement sql = connect.prepareStatement("UPDATE commande SET idUtilisateur = ?, total = ?, idAdresse = ?, etat = ?, dateC = ? WHERE id = ?");
 			sql.setInt(1, commande.getIdUtilisateur().getId());
 			sql.setFloat(2, commande.getTotal());
 			sql.setInt(3, commande.getIdAdresse().getId());
 			sql.setInt(4, commande.getEtat());
+			sql.setString(5, commande.getDateC());
 			sql.setInt(6, id);
 			
 			sql.executeUpdate();
@@ -110,20 +111,20 @@ public class CommandeD implements IDao<CommandeM>{
 		CommandeM commande = new CommandeM();
 
 		try {
-			PreparedStatement sql = connect.prepareStatement("SELECT * FROM commande WHERE id= ?");
+			PreparedStatement sql = connect.prepareStatement("SELECT * FROM commande INNER JOIN utilisateur ON commande.idUtilisateur = utilisateur.id INNER JOIN adresseLivraison ON commande.idAdresse = adresseLivraison.id WHERE id= ?");
 			sql.setInt(1, id);
 			ResultSet rs = sql.executeQuery();
 			if (rs.next()) {
 				
-				UtilisateurM utilisateur = new UtilisateurM(rs.getInt("id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("dateInscription"),rs.getString("email"),rs.getString("motDePasse")	);
-				AdresseLivraisonM adresseLivraison = new AdresseLivraisonM(rs.getInt("id"),utilisateur,rs.getString("adresse"),rs.getInt("codePostal"),rs.getString("ville"),rs.getString("pays"));
-
-				commande.setIdUtilisateur(utilisateur);
-				commande.setDateC(rs.getString("dateC"));
-				commande.setTotal(rs.getFloat("total"));
-				commande.setIdAdresse(adresseLivraison);
-				commande.setEtat(rs.getInt("etat"));
+				UtilisateurM utilisateur = new UtilisateurM(rs.getInt("utilisateur.id"),rs.getString("utilisateur.nom"),rs.getString("utilisateur.prenom"),rs.getString("utilisateur.dateInscription"),rs.getString("utilisateur.email"),rs.getString("utilisateur.motDePasse"));
+				AdresseLivraisonM adresseLivraison = new AdresseLivraisonM(rs.getInt("adresseLivraison.id"),utilisateur,rs.getString("adresseLivraison.adresse"),rs.getInt("adresseLivraison.codePostal"),rs.getString("adresseLivraison.ville"),rs.getString("adresseLivraison.pays"));
 				
+				commande.setId(rs.getInt("commande.id"));
+				commande.setIdUtilisateur(utilisateur);
+				commande.setDateC(rs.getString("commande.dateC"));
+				commande.setTotal(rs.getFloat("commande.total"));
+				commande.setIdAdresse(adresseLivraison);
+				commande.setEtat(rs.getInt("commande.etat"));		
 			}
 			
 		} catch (SQLException e) {
