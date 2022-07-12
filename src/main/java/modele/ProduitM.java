@@ -32,6 +32,16 @@ public class ProduitM {
 		this.idSousCategorie = idSousCategorie;
 		this.stock = stock;
 		this.stockMinimum = stockMinimum;
+	}	
+	public ProduitM(int id, String titre, int stock, int stockMinimum) {
+		this.id = id;
+		this.titre = titre;
+		this.stock = stock;
+		this.stockMinimum = stockMinimum;
+	}
+	public ProduitM(int id, String titre) {
+		this.id = id;
+		this.titre = titre;
 	}
 	
 	public int getId() {
