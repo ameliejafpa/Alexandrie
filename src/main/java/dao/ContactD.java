@@ -46,7 +46,7 @@ public class ContactD implements IDao<ContactM>{
 			
 			while (rs.next()) {
 				ContactM contact = new ContactM();
-				UtilisateurM utilisateur = new UtilisateurM(rs.getInt("id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("dateInscription"),rs.getString("email"),rs.getString("motDePasse")	);
+				UtilisateurM utilisateur = new UtilisateurM(rs.getInt("utilisateur.id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("dateInscription"),rs.getString("email"),rs.getString("motDePasse")	);
 				
 				contact.setId(rs.getInt("id"));
 				contact.setIdUtilisateur(utilisateur);
@@ -107,12 +107,12 @@ public class ContactD implements IDao<ContactM>{
 		ContactM contact = new ContactM();
 
 		try {
-			PreparedStatement sql = connect.prepareStatement("SELECT * FROM contact WHERE id= ?");
+			PreparedStatement sql = connect.prepareStatement("SELECT * FROM contact INNER JOIN utilisateur ON contact.idUtilisateur = utilisateur.id WHERE id= ?");
 			sql.setInt(1, id);
 			ResultSet rs = sql.executeQuery();
 			if (rs.next()) {
 				
-				UtilisateurM utilisateur = new UtilisateurM(rs.getInt("id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("dateInscription"),rs.getString("email"),rs.getString("motDePasse")	);
+				UtilisateurM utilisateur = new UtilisateurM(rs.getInt("utilisateur.id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("dateInscription"),rs.getString("email"),rs.getString("motDePasse")	);
 
 				contact.setIdUtilisateur(utilisateur);
 				contact.setSujet(rs.getString("sujet"));

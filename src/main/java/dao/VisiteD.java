@@ -45,8 +45,8 @@ try {
 			
 			while (rs.next()) {
 				VisiteM visite = new VisiteM();
-				UtilisateurM utilisateur = new UtilisateurM(rs.getInt("id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("dateInscription"),rs.getString("email"),rs.getString("motDePasse"));
-				ProduitM produit = new ProduitM(rs.getInt("id"),rs.getString("titre"));
+				UtilisateurM utilisateur = new UtilisateurM(rs.getInt("utilisateur.id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("dateInscription"),rs.getString("email"),rs.getString("motDePasse"));
+				ProduitM produit = new ProduitM(rs.getInt("produit.id"),rs.getString("titre"));
 				
 
 				visite.setId(rs.getInt("id"));
@@ -106,13 +106,13 @@ try {
 		
 
 		try {
-			PreparedStatement sql = connect.prepareStatement("SELECT * FROM visite WHERE id= ?");
+			PreparedStatement sql = connect.prepareStatement("SELECT * FROM visite INNER JOIN produit ON visite.idProduit = produit.id INNER JOIN utilisateur ON visite.idUtilisateur = utilisateur.id WHERE id= ?");
 			sql.setInt(1, id);
 			ResultSet rs = sql.executeQuery();
 			if (rs.next()) {
 				
-				UtilisateurM utilisateur = new UtilisateurM(rs.getInt("id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("dateInscription"),rs.getString("email"),rs.getString("motDePasse"));
-				ProduitM produit = new ProduitM(rs.getInt("id"),rs.getString("titre"));
+				UtilisateurM utilisateur = new UtilisateurM(rs.getInt("utilisateur.id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("dateInscription"),rs.getString("email"),rs.getString("motDePasse"));
+				ProduitM produit = new ProduitM(rs.getInt("produit.id"),rs.getString("titre"));
 
 				visite.setIdProduit(produit);
 				visite.setIdUtilisateur(utilisateur);
