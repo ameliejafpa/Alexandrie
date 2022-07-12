@@ -45,9 +45,9 @@ public class AdresseLivraisonD implements IDao<AdresseLivraisonM>{
 			
 			while (rs.next()) {
 				AdresseLivraisonM adresseLivraison = new AdresseLivraisonM();
-				UtilisateurM utilisateur = new UtilisateurM(rs.getInt("id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("dateInscription"),rs.getString("email"),rs.getString("motDePasse")	);
+				UtilisateurM utilisateur = new UtilisateurM(rs.getInt("utilisateur.id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("dateInscription"),rs.getString("email"),rs.getString("motDePasse")	);
 				
-				adresseLivraison.setId(rs.getInt("id"));
+				adresseLivraison.setId(rs.getInt("adresseLivraison.id"));
 				adresseLivraison.setIdUtilisateur(utilisateur);
 				adresseLivraison.setAdresse(rs.getString("adresse"));
 				adresseLivraison.setCodePostal(rs.getInt("codePostal"));
@@ -108,13 +108,13 @@ public class AdresseLivraisonD implements IDao<AdresseLivraisonM>{
 		AdresseLivraisonM adresseLivraison = new AdresseLivraisonM();
 
 		try {
-			PreparedStatement sql = connect.prepareStatement("SELECT * FROM adresseLivraison INNER JOIN utilisateur ON adresseLivraison.idUtilisateur = utilisateur.id WHERE id= ?");
+			PreparedStatement sql = connect.prepareStatement("SELECT * FROM adresseLivraison INNER JOIN utilisateur ON adresseLivraison.idUtilisateur = utilisateur.id WHERE adresseLivraison.id= ?");
 			sql.setInt(1, id);
 			ResultSet rs = sql.executeQuery();
 			if (rs.next()) {
 				
 				UtilisateurM utilisateur = new UtilisateurM(rs.getInt("utilisateur.id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("dateInscription"),rs.getString("email"),rs.getString("motDePasse")	);
-
+				adresseLivraison.setId(rs.getInt("adresseLivraison.id"));
 				adresseLivraison.setIdUtilisateur(utilisateur);
 				adresseLivraison.setAdresse(rs.getString("adresse"));
 				adresseLivraison.setCodePostal(rs.getInt("codePostal"));

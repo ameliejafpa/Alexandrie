@@ -49,7 +49,7 @@ try {
 				ProduitM produit = new ProduitM(rs.getInt("produit.id"),rs.getString("titre"));
 				
 
-				visite.setId(rs.getInt("id"));
+				visite.setId(rs.getInt("visite.id"));
 				visite.setIdProduit(produit);
 				visite.setIdUtilisateur(utilisateur);
 				visite.setDateV(rs.getString("dateV"));
@@ -106,7 +106,7 @@ try {
 		
 
 		try {
-			PreparedStatement sql = connect.prepareStatement("SELECT * FROM visite INNER JOIN produit ON visite.idProduit = produit.id INNER JOIN utilisateur ON visite.idUtilisateur = utilisateur.id WHERE id= ?");
+			PreparedStatement sql = connect.prepareStatement("SELECT * FROM visite INNER JOIN produit ON visite.idProduit = produit.id INNER JOIN utilisateur ON visite.idUtilisateur = utilisateur.id WHERE visite.id= ?");
 			sql.setInt(1, id);
 			ResultSet rs = sql.executeQuery();
 			if (rs.next()) {
@@ -114,6 +114,7 @@ try {
 				UtilisateurM utilisateur = new UtilisateurM(rs.getInt("utilisateur.id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("dateInscription"),rs.getString("email"),rs.getString("motDePasse"));
 				ProduitM produit = new ProduitM(rs.getInt("produit.id"),rs.getString("titre"));
 
+				visite.setId(rs.getInt("visite.id"));
 				visite.setIdProduit(produit);
 				visite.setIdUtilisateur(utilisateur);
 				visite.setDateV(rs.getString("dateV"));

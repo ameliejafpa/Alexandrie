@@ -111,7 +111,7 @@ public class CommandeD implements IDao<CommandeM>{
 		CommandeM commande = new CommandeM();
 
 		try {
-			PreparedStatement sql = connect.prepareStatement("SELECT * FROM commande INNER JOIN utilisateur ON commande.idUtilisateur = utilisateur.id INNER JOIN adresseLivraison ON commande.idAdresse = adresseLivraison.id WHERE id= ?");
+			PreparedStatement sql = connect.prepareStatement("SELECT * FROM commande INNER JOIN utilisateur ON commande.idUtilisateur = utilisateur.id INNER JOIN adresseLivraison ON commande.idAdresse = adresseLivraison.id WHERE commande.id= ?");
 			sql.setInt(1, id);
 			ResultSet rs = sql.executeQuery();
 			if (rs.next()) {

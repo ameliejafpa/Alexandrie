@@ -18,13 +18,12 @@ public class ContactD implements IDao<ContactM>{
 		// TODO Auto-generated method stub
 		try {
 			
-			PreparedStatement sql = connect.prepareStatement("INSERT INTO contact(idUtilisateur, sujet, message, etat) VALUES (? , ?, ?, ?");
+			PreparedStatement sql = connect.prepareStatement("INSERT INTO contact(idUtilisateur, sujet, message, etat) VALUES (?, ?, ?, ?");
 			
 			sql.setObject(1, contact.getIdUtilisateur().getId());
 			sql.setString(2, contact.getSujet());
 			sql.setString(3, contact.getMessage());
 			sql.setInt(4, contact.getEtat());
-
 
 			System.out.println(sql);
 			sql.executeUpdate();
@@ -48,7 +47,7 @@ public class ContactD implements IDao<ContactM>{
 				ContactM contact = new ContactM();
 				UtilisateurM utilisateur = new UtilisateurM(rs.getInt("utilisateur.id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("dateInscription"),rs.getString("email"),rs.getString("motDePasse")	);
 				
-				contact.setId(rs.getInt("id"));
+				contact.setId(rs.getInt("contact.id"));
 				contact.setIdUtilisateur(utilisateur);
 				contact.setSujet(rs.getString("sujet"));
 				contact.setMessage(rs.getString("message"));
@@ -107,13 +106,13 @@ public class ContactD implements IDao<ContactM>{
 		ContactM contact = new ContactM();
 
 		try {
-			PreparedStatement sql = connect.prepareStatement("SELECT * FROM contact INNER JOIN utilisateur ON contact.idUtilisateur = utilisateur.id WHERE id= ?");
+			PreparedStatement sql = connect.prepareStatement("SELECT * FROM contact INNER JOIN utilisateur ON contact.idUtilisateur = utilisateur.id WHERE contact.id= ?");
 			sql.setInt(1, id);
 			ResultSet rs = sql.executeQuery();
 			if (rs.next()) {
 				
 				UtilisateurM utilisateur = new UtilisateurM(rs.getInt("utilisateur.id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("dateInscription"),rs.getString("email"),rs.getString("motDePasse")	);
-
+				contact.setId(rs.getInt("contact.id"));
 				contact.setIdUtilisateur(utilisateur);
 				contact.setSujet(rs.getString("sujet"));
 				contact.setMessage(rs.getString("message"));

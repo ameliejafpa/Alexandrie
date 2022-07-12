@@ -44,7 +44,7 @@ public class RechercheD implements IDao<RechercheM>{
 				RechercheM recherche = new RechercheM();
 				UtilisateurM utilisateur = new UtilisateurM(rs.getInt("utilisateur.id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("dateInscription"),rs.getString("email"),rs.getString("motDePasse")	);
 				
-				recherche.setId(rs.getInt("id"));
+				recherche.setId(rs.getInt("recherche.id"));
 				recherche.setIdUtilisateur(utilisateur);
 				recherche.setMotCle(rs.getString("motCle"));
 				recherche.setDateR(rs.getString("dateR"));
@@ -100,13 +100,13 @@ public class RechercheD implements IDao<RechercheM>{
 		RechercheM recherche = new RechercheM();
 
 		try {
-			PreparedStatement sql = connect.prepareStatement("SELECT * FROM recherche INNER JOIN utilisateur ON recherche.idUtilisateur = utilisateur.id WHERE id= ?");
+			PreparedStatement sql = connect.prepareStatement("SELECT * FROM recherche INNER JOIN utilisateur ON recherche.idUtilisateur = utilisateur.id WHERE recherche.id= ?");
 			sql.setInt(1, id);
 			ResultSet rs = sql.executeQuery();
 			if (rs.next()) {
 				
 				UtilisateurM utilisateur = new UtilisateurM(rs.getInt("utilisateur.id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("dateInscription"),rs.getString("email"),rs.getString("motDePasse")	);
-
+				recherche.setId(rs.getInt("recherche.id"));
 				recherche.setIdUtilisateur(utilisateur);
 				recherche.setMotCle(rs.getString("motCle"));
 				recherche.setDateR(rs.getString("dateR"));

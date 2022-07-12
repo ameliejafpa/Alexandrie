@@ -23,8 +23,6 @@ public class SlideD implements IDao<SlideM> {
 			sql.setString(2, slide.getImage());
 			sql.setString(3, slide.getUrl());
 
-
-
 			System.out.println(sql);
 			sql.executeUpdate();
 			return true;
@@ -69,7 +67,7 @@ public class SlideD implements IDao<SlideM> {
 			sql.setString(1, slide.getTitre());
 			sql.setString(2, slide.getImage());
 			sql.setString(3, slide.getUrl());
-			sql.setInt(3, id);
+			sql.setInt(4, id);
 			
 			sql.executeUpdate();
 			return true;
@@ -100,8 +98,7 @@ public class SlideD implements IDao<SlideM> {
 	@Override
 	public SlideM findById(int id) {
 		// TODO Auto-generated method stub
-		SlideM slide = new SlideM();
-		
+		SlideM slide = new SlideM();		
 
 		try {
 			PreparedStatement sql = connect.prepareStatement("SELECT * FROM slide WHERE id= ?");

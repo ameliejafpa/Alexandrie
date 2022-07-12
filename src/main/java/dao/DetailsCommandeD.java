@@ -111,7 +111,7 @@ public class DetailsCommandeD implements IDao<DetailsCommandeM>{
 		
 
 		try {
-			PreparedStatement sql = connect.prepareStatement("SELECT * FROM detailsCommande INNER JOIN commande ON detailsCommande.idCommande = commande.id INNER JOIN produit ON detailsCommande.idProduit = produit.id WHERE id= ?");
+			PreparedStatement sql = connect.prepareStatement("SELECT * FROM detailsCommande INNER JOIN commande ON detailsCommande.idCommande = commande.id INNER JOIN produit ON detailsCommande.idProduit = produit.id WHERE detailsCommande.id= ?");
 			sql.setInt(1, id);
 			ResultSet rs = sql.executeQuery();
 			if (rs.next()) {
