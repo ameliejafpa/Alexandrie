@@ -3,24 +3,24 @@ package modele;
 public class AdministrateurM {
 	private int id;
 	private String nom;
-	private String prenom;
+	private String email;
 	private String motDePasse;
 	private String privilege;
 	
 	public AdministrateurM() {
 	}
 
-	public AdministrateurM(String nom, String prenom, String motDePasse, String privilege) {
+	public AdministrateurM(String nom, String email, String motDePasse, String privilege) {
 		this.nom = nom;
-		this.prenom = prenom;
+		this.email = email;
 		this.motDePasse = motDePasse;
 		this.privilege = privilege;
 	}
 
-	public AdministrateurM(int id, String nom, String prenom, String motDePasse, String privilege) {
+	public AdministrateurM(int id, String nom, String email, String motDePasse, String privilege) {
 		this.id = id;
 		this.nom = nom;
-		this.prenom = prenom;
+		this.email = email;
 		this.motDePasse = motDePasse;
 		this.privilege = privilege;
 	}
@@ -41,12 +41,12 @@ public class AdministrateurM {
 		this.nom = nom;
 	}
 
-	public String getPrenom() {
-		return prenom;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getMotDePasse() {
