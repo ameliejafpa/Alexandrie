@@ -30,3 +30,5 @@ build/
 src/main/java/dao/ConnectMySql.java
 
 .classpath
+
+.settings
