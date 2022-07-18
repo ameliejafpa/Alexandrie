@@ -93,5 +93,29 @@ public class AdministrateurD implements IDao<AdministrateurM>{
 		}
 		return administrateur;
 	}
+	
+	public AdministrateurM login(String email, String password, AdministrateurM administrateur) {
+		
+		try {
+			PreparedStatement sql = connect.prepareStatement("SELECT * FROM administrateur WHERE email=? AND motDePasse=SHA2(?,224)");
+			sql.setString(1, email);
+			sql.setString(2, password);		
+			//System.out.println(sql);
+			ResultSet res = sql.executeQuery();
+				while(res.next()) {	
+					administrateur.setId(res.getInt("id"));
+					administrateur.setNom(res.getString("nom"));
+					administrateur.setEmail(res.getString("email"));
+					administrateur.setPrivilege(res.getString("privilege"));
+				}	//fin while
+				if (administrateur.getId()!=0) {
+					return administrateur;				
+				};	//fin if			
+			}	//fin try
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 } // fin AdministrateurD
