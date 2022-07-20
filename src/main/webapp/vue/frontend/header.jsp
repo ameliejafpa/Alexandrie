@@ -1,28 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<!-- CSS 
-    ========================= -->
-    <link rel="stylesheet" href="vue/frontend/assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="vue/frontend/assets/css/slick.css">
-    <link rel="stylesheet" href="vue/frontend/assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="vue/frontend/assets/css/ionicons.min.css">
-    <link rel="stylesheet" href="vue/frontend/assets/css/pe-icon-7-stroke.css">
-    <link rel="stylesheet" href="vue/frontend/assets/css/animate.css">
-    <link rel="stylesheet" href="vue/frontend/assets/css/nice-select.css">
-    <link rel="stylesheet" href="vue/frontend/assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="vue/frontend/assets/css/jquery-ui.min.css">
-    <!-- Main Style CSS -->
-    <link rel="stylesheet" href="vue/frontend/assets/css/style.css">
 
-    <!--modernizr min js here-->
-    <script src="vue/frontend/assets/js/vendor/modernizr-3.11.2.min.js"></script>
-</head>
-<body>
+
 <!--offcanvas menu area start-->
     <div class="body_overlay">
 
@@ -40,7 +17,7 @@
                         </div>
                         <div id="menu" class="text-left ">
                             <ul class="offcanvas_main_menu">
-                                <li><a href="/accueil">Accueil</a></li>  
+                                <li><a href="${accueil }">Accueil</a></li>  
                                 <c:forEach items="${categories}" var="categorie">
                                 	<li class="menu-item-has-children"><a href="${categorie.id }">${categorie.titre }</a>
                                 		<ul class="sub-menu">
@@ -63,34 +40,43 @@
     
     <!--header area start-->
     <header class="header_section">
-        <!-- <div class="header_top">
+        <div class="header_top">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <div class="header_top_inner d-flex justify-content-between">
                             <div class="welcome_text">
-                                <p>World Wide Completely Free Returns and Free Shipping</p>
+                                <p>Les instruments de musique</p>
                             </div>
                             <div class="header_top_sidebar d-flex align-items-center">
                                 <ul class="d-flex">
-                                    <li><i class="icofont-phone"></i> <a href="tel:+00123456789">+00 123 456 789</a>
+                                    <li><i class="icofont-phone"></i> <a href="tel:0123456789">01 23 45 67 89</a>
                                     </li>
                                     <li><i class="icofont-envelope"></i> <a
-                                            href="mailto:demo@example.com">demo@example.com</a></li>
-                                    <li class="account_link"> <i class="icofont-user-alt-7"></i><a href="#">Account</a>
+                                            href="mailto:demo@example.com">contact@alexandrie.com</a></li>
+                                   <% if((boolean)session.getAttribute("isConnected")==false){ %>
+                                        <li class="account_link">
+                                                <a href="login"><span>Inscription / Connexion</span></a> 
+                                        </li>
+                                        <% }else{ %>
+                                        <li><a href="#"><span>Bonjour  ${userPrenom} ${userNom}</span></a></li>
+                                        <li><a href="#"><span>Mon compte</span></a></li>
+                                        <li><a href="deconnexion"><span>D&eacute;connexion </span></a></li>
+                                        <% } %>
+                                    <!-- <li class="account_link"> <i class="icofont-user-alt-7"></i><a href="#">Account</a>
                                         <ul class="dropdown_account_link">
                                             <li><a href="my-account.html">My Account</a></li>
                                             <li><a href="login-register.html">Login</a></li>
                                             <li><a href="contact.html">Contact</a></li>
                                         </ul>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -119,16 +105,8 @@
                         <!--main menu end-->
                         <div class="header_account">
                             <ul class="d-flex">
-                                <li class="header_search"><a href="javascript:void(0)"><i class="pe-7s-search"></i></a>
-                                </li>
-                                <li class="header_wishlist"><a href="wishlist.html"><i class="pe-7s-like"></i></a></li>
-                                 <li class="account_link"> <i class="icofont-user-alt-7"></i><a href="#">Compte</a>
-                                        <ul class="dropdown_account_link">
-                                            <li><a href="my-account.html">Mon compte</a></li>
-                                            <li><a href="login-register.html">Login</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                        </ul>
-                                    </li>
+                                <li class="header_search"><a href="javascript:void(0)"><i class="pe-7s-search"></i></a></li>
+                                <li class="header_wishlist"><a href="wishlist.html"><i class="pe-7s-like"></i></a></li>   
                                 <li class="shopping_cart"><a href="javascript:void(0)"><i class="pe-7s-shopbag"></i></a>
                                     <span class="item_count">2</span>
                                 </li>

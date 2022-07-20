@@ -150,24 +150,4 @@
     <!--footer area end-->
     
     
-    <!-- JS
-============================================ -->
-
-    <script src="vue/frontend/assets/js/vendor/jquery-3.6.0.min.js"></script>
-    <script src="vue/frontend/assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
-    <script src="vue/frontend/assets/js/vendor/bootstrap.bundle.min.js"></script>
-    <script src="vue/frontend/assets/js/slick.min.js"></script>
-    <script src="vue/frontend/assets/js/owl.carousel.min.js"></script>
-    <script src="vue/frontend/assets/js/wow.min.js"></script>
-    <script src="vue/frontend/assets/js/jquery.scrollup.min.js"></script>
-    <script src="vue/frontend/assets/js/jquery.nice-select.js"></script>
-    <script src="vue/frontend/assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="vue/frontend/assets/js/mailchimp-ajax.js"></script>
-    <script src="vue/frontend/assets/js/jquery-ui.min.js"></script>
-    <script src="vue/frontend/assets/js/jquery.zoom.min.js"></script>
-
-    <!-- Main JS -->
-    <script src="vue/frontend/assets/js/main.js"></script>
-
-</body>
-</html>
+    

@@ -1,4 +1,29 @@
-<c:import url="header.jsp"></c:import>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Alexandrie - Accueil</title>
+<!-- CSS 
+    ========================= -->
+    <link rel="stylesheet" href="vue/frontend/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="vue/frontend/assets/css/slick.css">
+    <link rel="stylesheet" href="vue/frontend/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="vue/frontend/assets/css/ionicons.min.css">
+    <link rel="stylesheet" href="vue/frontend/assets/css/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="vue/frontend/assets/css/animate.css">
+    <link rel="stylesheet" href="vue/frontend/assets/css/nice-select.css">
+    <link rel="stylesheet" href="vue/frontend/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="vue/frontend/assets/css/jquery-ui.min.css">
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="vue/frontend/assets/css/style.css">
+
+    <!--modernizr min js here-->
+    <script src="vue/frontend/assets/js/vendor/modernizr-3.11.2.min.js"></script>
+</head>
+<body>
+ <jsp:include page="/header" />
 
     <!-- product section start -->
     <div class="product_section mb-80 wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="1.1s">
@@ -1014,3 +1039,25 @@
     <!-- service section end-->
 
 <c:import url="footer.jsp"></c:import>
+
+<!-- JS
+============================================ -->
+
+    <script src="vue/frontend/assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="vue/frontend/assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <script src="vue/frontend/assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="vue/frontend/assets/js/slick.min.js"></script>
+    <script src="vue/frontend/assets/js/owl.carousel.min.js"></script>
+    <script src="vue/frontend/assets/js/wow.min.js"></script>
+    <script src="vue/frontend/assets/js/jquery.scrollup.min.js"></script>
+    <script src="vue/frontend/assets/js/jquery.nice-select.js"></script>
+    <script src="vue/frontend/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="vue/frontend/assets/js/mailchimp-ajax.js"></script>
+    <script src="vue/frontend/assets/js/jquery-ui.min.js"></script>
+    <script src="vue/frontend/assets/js/jquery.zoom.min.js"></script>
+
+    <!-- Main JS -->
+    <script src="vue/frontend/assets/js/main.js"></script>
+
+</body>
+</html>
