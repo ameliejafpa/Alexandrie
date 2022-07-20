@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Inscription / Connexion</title>
 <!-- CSS 
     ========================= -->
     <link rel="stylesheet" href="vue/frontend/assets/css/vendor/bootstrap.min.css">
@@ -24,7 +24,7 @@
 </head>
 <body>
 
-<c:import url="header.jsp"></c:import>
+ <jsp:include page="/header" />
 
     <!-- breadcrumbs area start -->
     <div class="breadcrumbs_aree breadcrumbs_bg mb-110" data-bgimg="assets/img/others/breadcrumbs-bg.png">
