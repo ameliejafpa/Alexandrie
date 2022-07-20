@@ -18,15 +18,17 @@
                         <div id="menu" class="text-left ">
                             <ul class="offcanvas_main_menu">
                                 <li><a href="${accueil }">Accueil</a></li>  
-                                <c:forEach items="${categories}" var="categorie">
-                                	<li class="menu-item-has-children"><a href="${categorie.id }">${categorie.titre }</a>
-                                		<ul class="sub-menu">
-                                			<c:forEach items="${sousCategories}" var="sousCategorie">
-                                				<li><a href="${sousCategorie.id }">${sousCategorie.titre }</a></li>
-                                			</c:forEach>
-                                		</ul>
-                                	<li>
-                                </c:forEach> 
+                                 <c:forEach items="${listeCategories}" var="categorie">
+	                                	<li class="menu-item-has-children"><a href="#">${categorie.titre }</a>
+	                                		<ul class="sub-menu">
+	                                			<c:forEach items="${listeSousCategories}" var="sousCategorie">
+	                                				<c:if test="${sousCategorie.idCategorie.id == categorie.id }">
+														<li><a href="${sousCategorie.id }">${sousCategorie.titre }</a></li>
+ 	                                				</c:if>
+	                                			</c:forEach>
+	                                		</ul>
+	                                	<li>
+                                	</c:forEach> 
                                 <li class="menu-item-has-children"><a href="${coordonnee }">Nous contacter</a></li>
                             </ul>
                         </div>
@@ -82,18 +84,20 @@
                 <div class="col-12">
                     <div class="main_header d-flex justify-content-between align-items-center">
                        <div class="header_logo">
-                            <a class="sticky_none" href="index.html"><img src="vue/frontend/assets/img/logo/logo_music_shop.webp" alt=""></a>
+                            <a class="sticky_none" href="index.html"><img src="vue/frontend/assets/img/logo/logo_music_shop.png" alt=""></a>
                         </div>
                         <!--main menu start-->
                         <div class="main_menu d-none d-lg-block">
                             <nav>
                                 <ul class="d-flex">
                                     <li><a href="/accueil">Accueil</a></li>
-                                    <c:forEach items="${categories}" var="categorie">
+                                    <c:forEach items="${listeCategories}" var="categorie">
 	                                	<li><a href="${categorie.id }">${categorie.titre }</a>
 	                                		<ul class="bucker-dropdown">
-	                                			<c:forEach items="${sousCategories}" var="sousCategorie">
-	                                				<li><a href="${sousCategorie.id }">${sousCategorie.titre }</a></li>
+	                                			<c:forEach items="${listeSousCategories}" var="sousCategorie">
+	                                				<c:if test="${sousCategorie.idCategorie.id == categorie.id }">
+														<li><a href="${sousCategorie.id }">${sousCategorie.titre }</a></li>
+ 	                                				</c:if>
 	                                			</c:forEach>
 	                                		</ul>
 	                                	<li>
