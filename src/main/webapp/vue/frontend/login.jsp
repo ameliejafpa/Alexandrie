@@ -81,6 +81,11 @@
                     <form id="formInscription" name="formInscription" method="post">
                         <div class="login-form">
                             <h4 class="login-title">Inscription</h4>
+                            <c:if test="${messageInscriptionOk }">
+                            	<div class="alert alert-success" role="alert">				  
+									Votre inscription a bien été prise en compte, veuillez-vous connecter
+								</div>
+                            </c:if>
                             <div class="row">
                                 <div class="col-md-6 col-12">
                                     <label>Nom</label>
