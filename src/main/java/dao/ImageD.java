@@ -93,5 +93,23 @@ public class ImageD implements IDao<ImageM>{
 		}
 		return image;
 	}
+	
+	public ArrayList<ImageM> findByIdProduct(int id) {
+		ArrayList<ImageM> listeImages = new ArrayList<>();		
+		try {
+			PreparedStatement sql = connect.prepareStatement("SELECT * FROM image INNER JOIN produit ON image.idProduit=produit.id WHERE produit.id= ?");	
+			sql.setInt(1,id);	
+			ResultSet res = sql.executeQuery();			
+			while(res.next()) {
+				ImageM image = new ImageM(res.getInt("image.id"),
+						new ProduitM(res.getInt("produit.id"), res.getString("produit.titre")),
+						res.getString("image.url"));
+				listeImages.add(image);		
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return listeImages;
+	}
 
 } // fin ImageD
