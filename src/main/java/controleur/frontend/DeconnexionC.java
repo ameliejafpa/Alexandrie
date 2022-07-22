@@ -12,13 +12,13 @@ import javax.servlet.http.HttpSession;
  * Servlet implementation class Deconnexion
  */
 @WebServlet("/deconnexion")
-public class Deconnexion extends HttpServlet {
+public class DeconnexionC extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Deconnexion() {
+    public DeconnexionC() {
         super();
         // TODO Auto-generated constructor stub
     }

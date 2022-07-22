@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import dao.CategorieD;
 import dao.SousCategorieD;
 import modele.CategorieM;
+import modele.PanierM;
 import modele.SousCategorieM;
 
 /**
@@ -37,8 +38,17 @@ public class HeaderC extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(true);
 		if (session.getAttribute("isConnected") == null) {
+			session.setAttribute("userId", 1);
+			session.setAttribute("userPrenom", "invité");
+			session.setAttribute("userNom", "invité");
 			session.setAttribute("isConnected", false);
 		}
+		
+		if ((PanierM)session.getAttribute("panier") == null) {
+			PanierM panierTemporaire = new PanierM();
+			session.setAttribute("panier", panierTemporaire);
+		}
+		
 		
 		CategorieD categorieD = new CategorieD();
 		ArrayList<CategorieM> listeCategories = new ArrayList<>();

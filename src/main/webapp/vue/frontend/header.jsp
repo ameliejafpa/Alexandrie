@@ -56,22 +56,19 @@
                                     </li>
                                     <li><i class="icofont-envelope"></i> <a
                                             href="mailto:demo@example.com">contact@alexandrie.com</a></li>
-                                   <% if((boolean)session.getAttribute("isConnected")==false){ %>
+                                   <c:if test="${!isConnected }">
                                         <li class="account_link">
                                                 <a href="login"><span>Inscription / Connexion</span></a> 
                                         </li>
-                                        <% }else{ %>
-                                        <li><a href="#"><span>Bonjour  ${userPrenom} ${userNom}</span></a></li>
-                                        <li><a href="#"><span>Mon compte</span></a></li>
-                                        <li><a href="deconnexion"><span>D&eacute;connexion </span></a></li>
-                                        <% } %>
-                                    <!-- <li class="account_link"> <i class="icofont-user-alt-7"></i><a href="#">Account</a>
-                                        <ul class="dropdown_account_link">
-                                            <li><a href="my-account.html">My Account</a></li>
-                                            <li><a href="login-register.html">Login</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                        </ul>
-                                    </li> -->
+                                   </c:if>
+                                   <c:if test="${isConnected }">
+                                        <li class="account_link"> <i class="icofont-user-alt-7"></i><a href="#">${userPrenom} ${userNom}</a>
+                                        	<ul class="dropdown_account_link">
+                                        		<li><a href="#"><span>Mon compte</span></a></li>
+                                        		<li><a href="deconnexion"><span>Déconnexion </span></a></li>
+                                        	</ul>
+                                        </li>
+		                            </c:if>
                                 </ul>
                             </div>
                         </div>
@@ -112,7 +109,7 @@
                                 <li class="header_search"><a href="javascript:void(0)"><i class="pe-7s-search"></i></a></li>
                                 <li class="header_wishlist"><a href="wishlist.html"><i class="pe-7s-like"></i></a></li>   
                                 <li class="shopping_cart"><a href="javascript:void(0)"><i class="pe-7s-shopbag"></i></a>
-                                    <span class="item_count">2</span>
+                                    <span class="item_count">${panier.count() }</span>
                                 </li>
                             </ul>
                             <div class="canvas_open">
@@ -130,36 +127,27 @@
         <div class="cart_gallery">
             <div class="cart_close">
                 <div class="cart_text">
-                    <h3>cart</h3>
+                    <h3>Panier (${panier.count()} article(s))</h3>
                 </div>
                 <div class="mini_cart_close">
                     <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
                 </div>
             </div>
-            <div class="cart_item">
-                <div class="cart_img">
-                    <a href="single-product.html"><img src="vue/frontend/assets/img/product/product1.png" alt=""></a>
-                </div>
-                <div class="cart_info">
-                    <a href="single-product.html">Primis In Faucibus</a>
-                    <p>1 x <span> $65.00 </span></p>
-                </div>
-                <div class="cart_remove">
-                    <a href="#"><i class="ion-android-close"></i></a>
-                </div>
-            </div>
-            <div class="cart_item">
-                <div class="cart_img">
-                    <a href="single-product.html"><img src="vue/frontend/assets/img/product/product2.png" alt=""></a>
-                </div>
-                <div class="cart_info">
-                    <a href="single-product.html">Letraset Sheets</a>
-                    <p>1 x <span> $60.00 </span></p>
-                </div>
-                <div class="cart_remove">
-                    <a href="#"><i class="ion-android-close"></i></a>
-                </div>
-            </div>
+            <c:forEach items="${panierDetails }" var="article">
+	            <div class="cart_item">
+	                <div class="cart_img">
+	                    <a href="produit?id=${article.idProduit.id }"><img src="vue/frontend/assets/img/product/product1.png" alt=""></a>
+	                </div>
+	                <div class="cart_info">
+	                    <a href="single-product.html">Primis In Faucibus</a>
+	                    <p>1 x <span> $65.00 </span></p>
+	                </div>
+	                <div class="cart_remove">
+	                    <a href="#"><i class="ion-android-close"></i></a>
+	                </div>
+	            </div>
+            </c:forEach>
+            
         </div>
         <div class="mini_cart_table">
             <div class="cart_table_border">
@@ -175,10 +163,10 @@
         </div>
         <div class="mini_cart_footer">
             <div class="cart_button">
-                <a href="${login }">View cart</a>
+                <a href="${login }">Voir le panier</a>
             </div>
             <div class="cart_button">
-                <a href="checkout.html"><i class="fa fa-sign-in"></i> Checkout</a>
+                <a href="checkout.html"><i class="fa fa-sign-in"></i> Payer</a>
             </div>
         </div>
     </div>
