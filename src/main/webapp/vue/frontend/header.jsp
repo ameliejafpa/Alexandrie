@@ -17,13 +17,13 @@
                         </div>
                         <div id="menu" class="text-left ">
                             <ul class="offcanvas_main_menu">
-                                <li><a href="${accueil }">Accueil</a></li>  
+                                <li><a href="accueil">Accueil</a></li>  
                                  <c:forEach items="${listeCategories}" var="categorie">
 	                                	<li class="menu-item-has-children"><a href="#">${categorie.titre }</a>
 	                                		<ul class="sub-menu">
 	                                			<c:forEach items="${listeSousCategories}" var="sousCategorie">
 	                                				<c:if test="${sousCategorie.idCategorie.id == categorie.id }">
-														<li><a href="sousCategorie?id=${sousCategorie.id }">${sousCategorie.titre }</a></li>
+														<li><a href="listeProduits?idSousCategorie=${sousCategorie.id }">${sousCategorie.titre }</a></li>
  	                                				</c:if>
 	                                			</c:forEach>
 	                                		</ul>
@@ -90,13 +90,13 @@
                         <div class="main_menu d-none d-lg-block">
                             <nav>
                                 <ul class="d-flex">
-                                    <li><a href="/accueil">Accueil</a></li>
+                                    <li><a href="accueil">Accueil</a></li>
                                     <c:forEach items="${listeCategories}" var="categorie">
-	                                	<li><a href="categorie?id=${categorie.id }">${categorie.titre }</a>
+	                                	<li><a href="listeProduits?idCategorie=${categorie.id }">${categorie.titre }</a>
 	                                		<ul class="bucker-dropdown">
 	                                			<c:forEach items="${listeSousCategories}" var="sousCategorie">
 	                                				<c:if test="${sousCategorie.idCategorie.id == categorie.id }">
-														<li><a href="sousCategorie?id=${sousCategorie.id }">${sousCategorie.titre }</a></li>
+														<li><a href="listeProduits?idSousCategorie=${sousCategorie.id }">${sousCategorie.titre }</a></li>
  	                                				</c:if>
 	                                			</c:forEach>
 	                                		</ul>

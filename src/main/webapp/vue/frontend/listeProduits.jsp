@@ -21,20 +21,20 @@
 
     <!-- CSS 
     ========================= -->
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/slick.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/ionicons.min.css">
-    <link rel="stylesheet" href="assets/css/pe-icon-7-stroke.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet" href="assets/css/nice-select.css">
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="vue/frontend/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="vue/frontend/assets/css/slick.css">
+    <link rel="stylesheet" href="vue/frontend/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="vue/frontend/assets/css/ionicons.min.css">
+    <link rel="stylesheet" href="vue/frontend/assets/css/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="vue/frontend/assets/css/animate.css">
+    <link rel="stylesheet" href="vue/frontend/assets/css/nice-select.css">
+    <link rel="stylesheet" href="vue/frontend/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="vue/frontend/assets/css/jquery-ui.min.css">
     <!-- Main Style CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="vue/frontend/assets/css/style.css">
 
     <!--modernizr min js here-->
-    <script src="assets/js/vendor/modernizr-3.11.2.min.js"></script>
+    <script src="vue/frontend/assets/js/vendor/modernizr-3.11.2.min.js"></script>
 
 
 
@@ -87,8 +87,20 @@
                             <h3>Catégories</h3>
                             <div class="widget_category">
                                 <ul>
-                                    <li><a href="#">All <span>(65)</span></a></li>
-                                    <li><a href="#">Cookies <span>(15)</span></a></li>
+                                	
+                                    <li><a href="listeProduits">Tous <span>(${total })</span></a></li>
+                                    <c:forEach items="${listeCategories}" var="categorie">
+                                    <li class="menu-item-has-children">
+                                    	<a href="listeProduits?idCategorie=${categorie.id }">${categorie.titre } <span>(${total })</span></a>
+                                    	<%-- <ul class="sub-menu">
+                                			<c:forEach items="${listeSousCategories}" var="sousCategorie">
+                                				<c:if test="${sousCategorie.idCategorie.id == categorie.id }">
+													<li><a href="listeProduits?idSousCategorie=${sousCategorie.id }">${sousCategorie.titre }</a></li>
+	                                				</c:if>
+                                			</c:forEach>
+                                		</ul> --%>
+                                    </li>
+                                    </c:forEach>
                                     
                                 </ul>
                             </div>
@@ -135,99 +147,98 @@
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade" id="grid">
                                     <div class="row grid__product">
-                                        <div class="col-lg-4 col-md-4 col-sm-6">
-                                            <article class="single_product wow fadeInUp" data-wow-delay="0.1s"
-                                                data-wow-duration="1.1s">
-                                                <figure>
-                                                    <div class="product_thumb">
-                                                        <a href="single-product.html"><img
-                                                                src="assets/img/product/product1.png" alt=""></a>
-                                                        <div class="action_links">
-                                                            <ul class="d-flex justify-content-center">
-                                                                <li class="add_to_cart"><a href="cart.html"
-                                                                        title="Add to cart">
-                                                                        <span class="pe-7s-shopbag"></span></a></li>
-                                                                <li class="wishlist"><a href="#"
-                                                                        title="Add to Wishlist"><span
-                                                                            class="pe-7s-like"></span></a></li>
-                                                                <li class="quick_button"><a href="#" title="Quick View"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#modal_box"> <span
-                                                                            class="pe-7s-look"></span></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <figcaption class="product_content text-center">
-                                                        <h4><a href="single-product.html">Products Name Here</a></h4>
-                                                        <div class="price_box">
-                                                            <span class="current_price">$22.00</span>
-                                                        </div>
-                                                    </figcaption>
-                                                </figure>
-                                            </article>
-                                        </div>
-                                        
-                                        
+                                    	<c:forEach items="${listeProduits }" var="produit">
+	                                        <div class="col-lg-4 col-md-4 col-sm-6">
+	                                            <article class="single_product wow fadeInUp" data-wow-delay="0.1s"
+	                                                data-wow-duration="1.1s">
+	                                                <figure>
+	                                                    <div class="product_thumb">
+	                                                        <a href="produit?id=${produit.id }"><img
+	                                                                src="${produit.image }" alt=""></a>
+	                                                        <div class="action_links">
+	                                                            <ul class="d-flex justify-content-center">
+	                                                                <li class="add_to_cart"><a href="cart.html"
+	                                                                        title="Add to cart">
+	                                                                        <span class="pe-7s-shopbag"></span></a></li>
+	                                                                <li class="wishlist"><a href="#"
+	                                                                        title="Add to Wishlist"><span
+	                                                                            class="pe-7s-like"></span></a></li>
+	                                                                <li class="quick_button"><a href="#" title="Quick View"
+	                                                                        data-bs-toggle="modal"
+	                                                                        data-bs-target="#modal_box"> <span
+	                                                                            class="pe-7s-look"></span></a></li>
+	                                                            </ul>
+	                                                        </div>
+	                                                    </div>
+	                                                    <figcaption class="product_content text-center">
+	                                                        <h4><a href="produit?id=${produit.id }">${produit.titre }</a></h4>
+	                                                        <div class="price_box">
+	                                                            <span class="current_price">${produit.prix } €</span>
+	                                                        </div>
+	                                                    </figcaption>
+	                                                </figure>
+	                                            </article>
+	                                        </div> 
+                                        </c:forEach> 
                                     </div>
                                 </div>
                                 <div class="tab-pane fade show active" id="list">
                                     <div class="list__product">
-                                        <article class="product_list_items border-bottom">
-                                            <figure class="product_list_flex d-flex align-items-center">
-                                                <div class="product_thumb">
-                                                    <a href="single-product.html"><img
-                                                            src="assets/img/product/product12.png" alt=""></a>
-                                                    <div class="action_links">
-                                                        <ul class="d-flex justify-content-center">
-                                                            <li class="add_to_cart"><a href="cart.html"
-                                                                    title="Add to cart">
-                                                                    <span class="pe-7s-shopbag"></span></a></li>
-                                                            <li class="wishlist"><a href="#"
-                                                                    title="Add to Wishlist"><span
-                                                                        class="pe-7s-like"></span></a></li>
-                                                            <li class="quick_button"><a href="#" title="Quick View"
-                                                                    data-bs-toggle="modal" data-bs-target="#modal_box">
-                                                                    <span class="pe-7s-look"></span></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <figcaption class="product_list_content">
-                                                    <h4><a href="single-product.html">Products Name Here</a></h4>
-                                                    <div class="product__ratting">
-                                                        <ul class="d-flex">
-                                                            <li><a href="#"><i class="ion-ios-star"></i></a></li>
-                                                            <li><a href="#"><i class="ion-ios-star"></i></a></li>
-                                                            <li><a href="#"><i class="ion-ios-star"></i></a></li>
-                                                            <li><a href="#"><i class="ion-ios-star"></i></a></li>
-                                                            <li><a href="#"><i class="ion-android-star-outline"></i></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="price_box">
-                                                        <span class="current_price">$22.00</span>
-                                                    </div>
-                                                    <div class="product__desc">
-                                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                            Dignissimos aliquam maiores impedit temporibus ratione
-                                                            eveniet adipisci ab quisquam in quam.</p>
-                                                    </div>
-                                                    <div class="action_links product_list_action">
-                                                        <ul class="d-flex">
-                                                            <li class="add_to_cart"><a href="cart.html"
-                                                                    title="Add to cart">
-                                                                    <span class="pe-7s-shopbag"></span></a></li>
-                                                            <li class="wishlist"><a href="#"
-                                                                    title="Add to Wishlist"><span
-                                                                        class="pe-7s-like"></span></a></li>
-                                                            <li class="quick_button"><a href="#" title="Quick View"
-                                                                    data-bs-toggle="modal" data-bs-target="#modal_box">
-                                                                    <span class="pe-7s-look"></span></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </figcaption>
-                                            </figure>
-                                        </article>
-                                        
+                                        <c:forEach items="${listeProduits }" var="produit">
+	                                        <article class="product_list_items border-bottom">
+	                                            <figure class="product_list_flex d-flex align-items-center">
+	                                                <div class="product_thumb">
+	                                                    <a href="produit?id=${produit.id }"><img
+	                                                            src="${produit.image }" alt=""></a>
+	                                                    <div class="action_links">
+	                                                        <ul class="d-flex justify-content-center">
+	                                                            <li class="add_to_cart"><a href="cart.html"
+	                                                                    title="Add to cart">
+	                                                                    <span class="pe-7s-shopbag"></span></a></li>
+	                                                            <li class="wishlist"><a href="#"
+	                                                                    title="Add to Wishlist"><span
+	                                                                        class="pe-7s-like"></span></a></li>
+	                                                            <li class="quick_button"><a href="#" title="Quick View"
+	                                                                    data-bs-toggle="modal" data-bs-target="#modal_box">
+	                                                                    <span class="pe-7s-look"></span></a></li>
+	                                                        </ul>
+	                                                    </div>
+	                                                </div>
+	                                                <figcaption class="product_list_content">
+	                                                    <h4><a href="produit?id=${produit.id }">${produit.titre }</a></h4>
+	                                                    <div class="product__ratting">
+	                                                        <ul class="d-flex">
+	                                                            <li><a href="#"><i class="ion-ios-star"></i></a></li>
+	                                                            <li><a href="#"><i class="ion-ios-star"></i></a></li>
+	                                                            <li><a href="#"><i class="ion-ios-star"></i></a></li>
+	                                                            <li><a href="#"><i class="ion-ios-star"></i></a></li>
+	                                                            <li><a href="#"><i class="ion-android-star-outline"></i></a>
+	                                                            </li>
+	                                                        </ul>
+	                                                    </div>
+	                                                    <div class="price_box">
+	                                                        <span class="current_price">${produit.prix } €</span>
+	                                                    </div>
+	                                                    <div class="product__desc">
+	                                                        <p>${produit.description }</p>
+	                                                    </div>
+	                                                    <div class="action_links product_list_action">
+	                                                        <ul class="d-flex">
+	                                                            <li class="add_to_cart"><a href="cart.html"
+	                                                                    title="Add to cart">
+	                                                                    <span class="pe-7s-shopbag"></span></a></li>
+	                                                            <li class="wishlist"><a href="#"
+	                                                                    title="Add to Wishlist"><span
+	                                                                        class="pe-7s-like"></span></a></li>
+	                                                            <li class="quick_button"><a href="#" title="Quick View"
+	                                                                    data-bs-toggle="modal" data-bs-target="#modal_box">
+	                                                                    <span class="pe-7s-look"></span></a></li>
+	                                                        </ul>
+	                                                    </div>
+	                                                </figcaption>
+	                                            </figure>
+	                                        </article>
+                                        </c:forEach>
                                     </div>
                                 </div>
                             </div>
