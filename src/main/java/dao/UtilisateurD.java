@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import modele.UtilisateurM;
 
-public class UtitlisateurD implements IDao<UtilisateurM> {
+public class UtilisateurD implements IDao<UtilisateurM> {
 	
 	Connection connect = ConnectMySql.getConnection();
 
@@ -17,7 +17,7 @@ public class UtitlisateurD implements IDao<UtilisateurM> {
 		// TODO Auto-generated method stub
 		try {
 			
-			PreparedStatement sql = connect.prepareStatement("INSERT INTO utilisateur(nom,prenom, dateInscription, email, motDePasse) VALUES (? , ?, now(), ?, SHA2(?,224)");
+			PreparedStatement sql = connect.prepareStatement("INSERT INTO utilisateur(nom,prenom, dateInscription, email, motDePasse) VALUES (? , ?, now(), ?, SHA2(?,224))");
 			
 			sql.setString(1, utilisateur.getNom());
 			sql.setString(2, utilisateur.getPrenom());
@@ -86,7 +86,7 @@ public class UtitlisateurD implements IDao<UtilisateurM> {
 	public boolean delete(int id) {
 		// TODO Auto-generated method stub
 		try {
-			PreparedStatement sql = connect.prepareStatement("DELETE FROM utilisateur WHERE id=?");
+			PreparedStatement sql = connect.prepareStatement("DELETE FROM utilisateur WHERE id=? AND id!=1");
 			sql.setInt(1, id);
 			sql.executeUpdate();
 			
@@ -124,5 +124,29 @@ public class UtitlisateurD implements IDao<UtilisateurM> {
 		return utilisateur;
 	}
 
+	public UtilisateurM connexion(String email,String password) {
+		try {
+		
+				PreparedStatement sql  = connect.prepareStatement("SELECT * FROM utilisateur WHERE email=? AND motDePasse=SHA2(?,224)");
+				sql.setString(1,email);
+				sql.setString(2,password);
+				ResultSet rs = sql.executeQuery();
+				UtilisateurM utilisateur = new UtilisateurM();
+				if(rs.next()) {
+					utilisateur.setId(rs.getInt( "id" ));
+					utilisateur.setNom(rs.getString( "nom" ));
+					utilisateur.setPrenom(rs.getString( "prenom" ));
+					utilisateur.setEmail(rs.getString( "email" ));
+					utilisateur.setMotDePasse(rs.getString( "motDePasse" ));
+					return utilisateur;
+				}else {
+					return null;
+				}
+		} catch (Exception ex) {
+        	ex.printStackTrace();
+        	return null;
+        }
+	}
+	
 
 }

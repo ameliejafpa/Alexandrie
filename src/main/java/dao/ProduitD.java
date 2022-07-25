@@ -55,6 +55,50 @@ public class ProduitD implements IDao<ProduitM> {
 		}
 		return listeProduit;
 	}
+	
+	public ArrayList<ProduitM> readByCategory(int idCategorie) {
+		ArrayList<ProduitM> listeProduit = new ArrayList<>();
+		try {
+			PreparedStatement sql = connect.prepareStatement("SELECT * FROM produit INNER JOIN sousCategorie ON produit.idSousCategorie=sousCategorie.id INNER JOIN categorie ON sousCategorie.idCategorie=categorie.id WHERE categorie.id = ?");
+			sql.setInt(1,idCategorie);	
+			ResultSet res = sql.executeQuery(); 
+			
+			while (res.next()) {
+				ProduitM produit = new ProduitM(res.getInt("produit.id"), res.getString("produit.titre"), 
+						res.getString("produit.description"), res.getFloat("produit.prix"), res.getString("produit.image"), 
+						new SousCategorieM(res.getInt("sousCategorie.id"),res.getString("sousCategorie.titre"), 
+								new CategorieM(res.getInt("categorie.id"), res.getString("categorie.titre"))
+						),res.getInt("produit.stock"), res.getInt("produit.stockMinimum"));
+				listeProduit.add(produit);
+			}			
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();	
+		}
+		return listeProduit;
+	}
+	
+	public ArrayList<ProduitM> readBySubCategory(int idSousCategorie) {
+		ArrayList<ProduitM> listeProduit = new ArrayList<>();
+		try {
+			PreparedStatement sql = connect.prepareStatement("SELECT * FROM produit INNER JOIN sousCategorie ON produit.idSousCategorie=sousCategorie.id INNER JOIN categorie ON sousCategorie.idCategorie=categorie.id WHERE sousCategorie.id = ?");
+			sql.setInt(1,idSousCategorie);	
+			ResultSet res = sql.executeQuery(); 
+			
+			while (res.next()) {
+				ProduitM produit = new ProduitM(res.getInt("produit.id"), res.getString("produit.titre"), 
+						res.getString("produit.description"), res.getFloat("produit.prix"), res.getString("produit.image"), 
+						new SousCategorieM(res.getInt("sousCategorie.id"),res.getString("sousCategorie.titre"), 
+								new CategorieM(res.getInt("categorie.id"), res.getString("categorie.titre"))
+						),res.getInt("produit.stock"), res.getInt("produit.stockMinimum"));
+				listeProduit.add(produit);
+			}			
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();	
+		}
+		return listeProduit;
+	}
 
 	@Override
 	public boolean update(ProduitM produit, int id) {
@@ -98,7 +142,8 @@ public class ProduitD implements IDao<ProduitM> {
 		try {
 			PreparedStatement sql = connect.prepareStatement("SELECT * FROM produit INNER JOIN sousCategorie ON "
 					+ "produit.idSousCategorie=sousCategorie.id INNER JOIN categorie ON sousCategorie.idCategorie=categorie.id"
-					+ " WHERE produit.id= "+id+"");			
+					+ " WHERE produit.id= ?");	
+			sql.setInt(1, id);
 			ResultSet res = sql.executeQuery();			
 			if(res.next()) {
 				produit = new ProduitM(res.getInt("produit.id"), res.getString("produit.titre"), res.getString("produit.description"), 
@@ -111,6 +156,23 @@ public class ProduitD implements IDao<ProduitM> {
 			e.printStackTrace();
 		}
 		return produit;
+	}
+	
+	public int totalParCategorie() {
+		int total = 0;
+		try {
+			PreparedStatement sql = connect.prepareStatement("SELECT count(*) AS total FROM produit INNER JOIN sousCategorie ON produit.idSousCategorie=sousCategorie.id INNER JOIN categorie ON sousCategorie.idCategorie=categorie.id");
+			ResultSet res = sql.executeQuery();
+			if (res.next()) {
+				total = res.getInt("total");
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return total;
+		
 	}
 
 } // fin ProduitD

@@ -29,6 +29,6 @@ build/
 # Connection file
 src/main/java/dao/ConnectMySql.java
 
-# VERSION TOMCAT
-*.project
-.settings\org.eclipse.wst.common.project.facet.core.xml
+.classpath
+
+.settings

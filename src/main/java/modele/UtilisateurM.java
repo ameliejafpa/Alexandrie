@@ -26,6 +26,20 @@ public class UtilisateurM {
 		this.motDePasse = motDePasse;
 	}
 	
+	
+	public UtilisateurM(String nom, String prenom, String email, String motDePasse) {
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.motDePasse = motDePasse;
+	}
+	
+	
+	public UtilisateurM(String email, String motDePasse) {
+		super();
+		this.email = email;
+		this.motDePasse = motDePasse;
+	}
 	public int getId() {
 		return id;
 	}
