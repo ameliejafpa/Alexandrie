@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+<title>Connnexion - Admin</title>
   <link rel="icon" href="vue/backend/assets/images/favicon-32x32.png" type="image/png" />
   <!-- Bootstrap CSS -->
   <link href="vue/backend/assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -18,19 +18,6 @@
   <!-- loader-->
 	<link href="vue/backend/assets/css/pace.min.css" rel="stylesheet" />
 </head>
-<body>
-
-</body>
-</html>
-
-
-
-  
-
-
-  <title>Skodash - Bootstrap 5 Admin Template</title>
-</head>
-
 <body>
 
   <!--start wrapper-->

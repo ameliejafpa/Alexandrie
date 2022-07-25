@@ -28,12 +28,15 @@
   <link href="vue/backend/assets/css/semi-dark.css" rel="stylesheet" />
   <link href="vue/backend/assets/css/header-colors.css" rel="stylesheet" />
 
-  <title>Header</title>
-
 </head>
-<body>
 
-  <!--start wrapper-->
+<body>
+  
+  <!-- variables-->
+<c:url value="/productlistadmin" var="productList"/>
+<c:url value="/deconnexionadmin" var="deconnexion"/>
+
+<!--start wrapper-->
   <div class="wrapper">
     <!--start top header-->
     <header class="top-header">        
@@ -74,23 +77,24 @@
               <input class="form-control" type="text" placeholder="Type here to search">
               <div class="position-absolute top-50 translate-middle-y d-block d-xl-none search-close-icon"><i class="bi bi-x-lg"></i></div>
           </form>
+          
+          <!-- parametre admin  -->
+          <c:if test="${isConnected==true }">        
           <div class="top-navbar-right ms-3">
             <ul class="navbar-nav align-items-center">
             <li class="nav-item dropdown dropdown-large">
               <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">
                 <div class="user-setting d-flex align-items-center gap-1">
-                  <img src="vue/backend/assets/images/avatars/avatar-1.png" class="user-img" alt="">
-                  <div class="user-name d-none d-sm-block">Jhon Deo</div>
+                  <div class="apps-icon-box mb-1 text-white bg-danger bg-gradient messages">${sessionNom.charAt(0) }</div>
                 </div>
               </a>
               <ul class="dropdown-menu dropdown-menu-end">
                 <li>
                    <a class="dropdown-item" href="#">
                      <div class="d-flex align-items-center">
-                        <img src="vue/backend/assets/images/avatars/avatar-1.png" alt="" class="rounded-circle" width="60" height="60">
                         <div class="ms-3">
-                          <h6 class="mb-0 dropdown-user-name">Jhon Deo</h6>
-                          <small class="mb-0 dropdown-user-designation text-secondary">HR Manager</small>
+                          <h6 class="mb-0 dropdown-user-name">${sessionNom }</h6>
+                          <small class="mb-0 dropdown-user-designation text-secondary">${sessionPrivilege }</small>
                         </div>
                      </div>
                    </a>
@@ -100,53 +104,24 @@
                     <a class="dropdown-item" href="#">
                        <div class="d-flex align-items-center">
                          <div class="setting-icon"><i class="bi bi-person-fill"></i></div>
-                         <div class="setting-text ms-3"><span>Profile</span></div>
-                       </div>
-                     </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                       <div class="d-flex align-items-center">
-                         <div class="setting-icon"><i class="bi bi-gear-fill"></i></div>
-                         <div class="setting-text ms-3"><span>Setting</span></div>
-                       </div>
-                     </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="index2.html">
-                       <div class="d-flex align-items-center">
-                         <div class="setting-icon"><i class="bi bi-speedometer"></i></div>
-                         <div class="setting-text ms-3"><span>Dashboard</span></div>
-                       </div>
-                     </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                       <div class="d-flex align-items-center">
-                         <div class="setting-icon"><i class="bi bi-piggy-bank-fill"></i></div>
-                         <div class="setting-text ms-3"><span>Earnings</span></div>
-                       </div>
-                     </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                       <div class="d-flex align-items-center">
-                         <div class="setting-icon"><i class="bi bi-cloud-arrow-down-fill"></i></div>
-                         <div class="setting-text ms-3"><span>Downloads</span></div>
+                         <div class="setting-text ms-3"><span>Profil</span></div>
                        </div>
                      </a>
                   </li>
                   <li><hr class="dropdown-divider"></li>
                   <li>
-                    <a class="dropdown-item" href="authentication-signup-with-header-footer.html">
+                    <a class="dropdown-item" href="${deconnexion }">
                        <div class="d-flex align-items-center">
                          <div class="setting-icon"><i class="bi bi-lock-fill"></i></div>
-                         <div class="setting-text ms-3"><span>Logout</span></div>
+                         <div class="setting-text ms-3"><span>Deconnexion</span></div>
                        </div>
                      </a>
                   </li>
               </ul>
             </li>
+          </c:if>
+          <!-- fin if connected -->
+
 
             <li class="nav-item dropdown dropdown-large">
               <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">
@@ -252,7 +227,7 @@
           <img src="vue/backend/assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
         </div>
         <div>
-          <h4 class="logo-text">Skodash</h4>
+          <h4 class="logo-text">Alexandrie</h4>
         </div>
         <div class="toggle-icon ms-auto"><i class="bi bi-chevron-double-left"></i>
         </div>
@@ -302,23 +277,4 @@
       </nav>
     </div>
     <!--end navigation-->  
-
-  </div>
-  <!--end wrapper-->
-
-  <!-- Bootstrap bundle JS -->
-  <script src="vue/backend/assets/js/bootstrap.bundle.min.js"></script>
-  <!--plugins-->
-  <script src="vue/backend/assets/js/jquery.min.js"></script>
-  <script src="vue/backend/assets/plugins/simplebar/js/simplebar.min.js"></script>
-  <script src="vue/backend/assets/plugins/metismenu/js/metisMenu.min.js"></script>
-  <script src="vue/backend/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
-  <script src="vue/backend/assets/js/pace.min.js"></script>
-  <script src="vue/backend/assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
-	<script src="vue/backend/assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js"></script>
-  <script src="vue/backend/assets/plugins/apexcharts-bundle/js/apexcharts.min.js"></script>
-  <!--app-->
-  <script src="vue/backend/assets/js/app.js"></script>
-  <script src="vue/backend/assets/js/index.js"></script>
-
 

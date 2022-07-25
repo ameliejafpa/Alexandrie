@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class Accueil
+ * Servlet implementation class Header
  */
-@WebServlet("/accueiladmin")
-public class Accueil extends HttpServlet {
+@WebServlet("/header")
+public class Header extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Accueil() {
+    public Header() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,17 +27,20 @@ public class Accueil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//verif connexion : si pas connecté, redirection automatique vers la page de connexion
+		// TODO Auto-generated method stub
 		HttpSession session = request.getSession( true );
-		if(session.getAttribute("isConnected")==null ||  (boolean)session.getAttribute("isConnected")==false ) {
-			System.out.println("is false");
-			response.sendRedirect("connectionadmin");
+		if(session.getAttribute("isConnected")==null) {
+			session.setAttribute( "isConnected", false );
 		}
-		else {
-			System.out.println(session.getAttribute("isConnected"));	
-			request.getRequestDispatcher("/vue/backend/Accueil.jsp").forward(request, response);
-		}	
 		
+		//mockup session
+		//session.setAttribute( "isConnected", true);
+		//session.setAttribute( "sessionNom", "Amelie");
+		//session.setAttribute( "sessionPrivilege", "Administrateur");
+		
+		request.getRequestDispatcher("/vue/backend/Header.jsp").include(request, response);		
+		
+
 	}
 
 	/**

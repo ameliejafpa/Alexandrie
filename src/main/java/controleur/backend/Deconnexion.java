@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class Accueil
+ * Servlet implementation class Deconnexion
  */
-@WebServlet("/accueiladmin")
-public class Accueil extends HttpServlet {
+@WebServlet("/deconnexionadmin")
+public class Deconnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Accueil() {
+    public Deconnexion() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,17 +27,15 @@ public class Accueil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//verif connexion : si pas connecté, redirection automatique vers la page de connexion
-		HttpSession session = request.getSession( true );
-		if(session.getAttribute("isConnected")==null ||  (boolean)session.getAttribute("isConnected")==false ) {
-			System.out.println("is false");
-			response.sendRedirect("connectionadmin");
-		}
-		else {
-			System.out.println(session.getAttribute("isConnected"));	
-			request.getRequestDispatcher("/vue/backend/Accueil.jsp").forward(request, response);
-		}	
 		
+		HttpSession session = request.getSession( true );
+        session.setAttribute( "sessionId", 0 );
+        session.setAttribute( "sessionNom", "" );
+        session.setAttribute( "sessionPrivilege", "" );
+        session.setAttribute( "isConnected", false );
+        
+        
+        response.sendRedirect("connectionadmin");  
 	}
 
 	/**

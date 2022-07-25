@@ -6,19 +6,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class Accueil
+ * Servlet implementation class ProductList
  */
-@WebServlet("/accueiladmin")
-public class Accueil extends HttpServlet {
+@WebServlet("/productlistadmin")
+public class ProductList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Accueil() {
+    public ProductList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,17 +26,8 @@ public class Accueil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//verif connexion : si pas connecté, redirection automatique vers la page de connexion
-		HttpSession session = request.getSession( true );
-		if(session.getAttribute("isConnected")==null ||  (boolean)session.getAttribute("isConnected")==false ) {
-			System.out.println("is false");
-			response.sendRedirect("connectionadmin");
-		}
-		else {
-			System.out.println(session.getAttribute("isConnected"));	
-			request.getRequestDispatcher("/vue/backend/Accueil.jsp").forward(request, response);
-		}	
-		
+		// TODO Auto-generated method stub
+		request.getRequestDispatcher("/vue/backend/ProductList.jsp").forward(request, response);
 	}
 
 	/**

@@ -12,9 +12,10 @@
   
 	<jsp-config>
 		<jsp-property-group>
-		<url-pattern> *.jsp </url-pattern>
-		<include-prelude> /WEB-INF/jstlLib.jsp </include-prelude>
+			<url-pattern> *.jsp </url-pattern>	
 		
+			<include-prelude> /WEB-INF/jstlLib.jsp </include-prelude>  
+				
 		</jsp-property-group>
 	</jsp-config>
   
